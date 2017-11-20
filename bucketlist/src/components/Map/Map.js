@@ -5,7 +5,7 @@ import mapBg from "./mapbg.jpg";
 import { getCountriesByUserId } from "../../redux/reducers/reducer.js";
 import "./Map.css";
 import Modal from "../Modal/Modal.js";
-import NavBar from "../NavBar/NavBar.js";
+import NavBar1 from "../NavBar1/NavBar1.js";
 
 //redux actions
 import { getCountries } from "../../redux/reducers/reducer.js";
@@ -76,7 +76,7 @@ class Map extends Component {
     //pass svg
     return (
       <div>
-        <NavBar />
+        <NavBar1 />
         {this.state.hoverCountry}
         <svg
           viewBox="0 0 2000 1001"
