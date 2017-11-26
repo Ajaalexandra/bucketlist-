@@ -3,6 +3,7 @@ import Country from "../Country/Country";
 import { connect } from "react-redux";
 import mapBg from "./mapbg.jpg";
 import { getCountriesByUserId } from "../../redux/reducers/reducer.js";
+
 import "./Map.css";
 import Modal from "../Modal/Modal.js";
 import NavBar1 from "../NavBar1/NavBar1.js";
@@ -27,7 +28,7 @@ class Map extends Component {
 
   componentDidMount() {
     // this.props.getCountriesByUserId(1);
-    this.props.getCountries;
+    this.props.getCountries();
     // console.log("did mount: ", this.props.countryList);
   }
 

@@ -26,7 +26,7 @@ class IntMap extends Component {
       selectedCountry: null,
       hoverCountry: ""
     };
-    // this.toggleVisited = this.toggleVisited.bind(this);
+    this.toggleVisited = this.toggleVisited.bind(this);
     this.chooseCountry = this.chooseCountry.bind(this);
     this.setHoverCountry = this.setHoverCountry.bind(this);
   }
@@ -46,16 +46,16 @@ class IntMap extends Component {
       hoverCountry: str
     });
   }
-  // toggleVisited(countryId) {
-  //   var tempVisited = [...this.state.visitedList];
-  //   if (tempVisited.includes(countryId)) {
-  //     var index = tempVisited.indexOf(countryId);
-  //     tempVisited.splice(index, 1);
-  //   } else {
-  //     tempVisited.push(countryId);
-  //   }
-  //   this.setState({ visitedList: tempVisited });
-  // }
+  toggleVisited(countryId) {
+    var tempVisited = [...this.state.visitedList];
+    if (tempVisited.includes(countryId)) {
+      var index = tempVisited.indexOf(countryId);
+      tempVisited.splice(index, 1);
+    } else {
+      tempVisited.push(countryId);
+    }
+    this.setState({ visitedList: tempVisited });
+  }
 
   render() {
     const countries = this.props.countryList.map((country, index) => {

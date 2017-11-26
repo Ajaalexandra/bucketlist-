@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./MyBucketList.css";
 import NavBar from "../NavBar/NavBar.js";
+import countries_json from "../../data/countries_json.js";
 
 class MyBucketList extends Component {
   constructor() {
@@ -26,11 +27,17 @@ class MyBucketList extends Component {
       return this.setState({ bucketlist: response.data });
     });
   }
-
+  //country names
+  //countriesData is an array of objects imported from a local file.
+  //country is each piece of data that is being returned from our getBucketlistByUserId SQL query.
   render() {
-    // console.log("state: ", this.state.bucketlist);
+    const countriesData = countries_json;
     const bucket = this.state.bucketlist.map(function(country, index) {
-      return <p key={index}>{country.countryid}</p>;
+      for (let i = 0; i < countriesData.length; i++) {
+        if (countriesData[i].id === country.countryid) {
+          return <p key={index}>{countriesData[i].name}</p>;
+        }
+      }
     });
     return (
       <div className="bucketlist-container">

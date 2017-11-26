@@ -12,6 +12,7 @@ module.exports = {
 
   getAllCountries: (req, res, next) => {
     const dbInstance = req.app.get("db");
+    console.log("does dbInstance exist?", dbInstance);
     dbInstance
       .getAllCountries()
       .then(countries => res.status(200).json(countries))
@@ -23,13 +24,13 @@ module.exports = {
     const { countryId, userId } = req.body;
     const dbInstance = req.app.get("db");
     dbInstance
-      .addToBucketlist([country_name, userId])
+      .addToBucketlist([countryid, userId])
       .then(updatedBucketlist => res.status(200).json(updatedBucketlist))
       .catch(() => res.status(500).json());
   },
 
   deleteFromBucketlist: (req, res, next) => {
-    const { countryId, userId } = req.body;
+    const { countryid, userId } = req.body;
     const dbInstance = req.app.get("db");
     dbInstance
       .deleteFromBucketlist([country_name, userId])
