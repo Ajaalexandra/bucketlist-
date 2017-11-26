@@ -23,7 +23,7 @@ module.exports = {
     const { countryId, userId } = req.body;
     const dbInstance = req.app.get("db");
     dbInstance
-      .addToBucketlist([countryId, userId])
+      .addToBucketlist([country_name, userId])
       .then(updatedBucketlist => res.status(200).json(updatedBucketlist))
       .catch(() => res.status(500).json());
   },
@@ -32,7 +32,7 @@ module.exports = {
     const { countryId, userId } = req.body;
     const dbInstance = req.app.get("db");
     dbInstance
-      .deleteFromBucketlist([countryId, userId])
+      .deleteFromBucketlist([country_name, userId])
       .then(updatedBucketlist => res.status(200).json(updatedBucketlist))
       .catch(() => res.status(500).json());
   },
@@ -55,6 +55,23 @@ module.exports = {
         console.log("deteled from visited in db", req.body);
         res.status(200).json(updatedVisited);
       })
+      .catch(() => res.status(500).json());
+  },
+
+  postPhoto: (req, res, next) => {
+    const dbInstance = req.app.get("db");
+    const { name, description, url } = req.body;
+    dbInstance
+      .postPhoto([name, description, url])
+      .then(response => res.status(200).json(response))
+      .catch(() => res.status(500).json());
+  },
+
+  getUserBucketList: (req, res, next) => {
+    const dbInstance = req.app.get("db");
+    dbInstance
+      .getBucketlistByUserId([req.params.id])
+      .then(response => res.status(200).json(response))
       .catch(() => res.status(500).json());
   },
 

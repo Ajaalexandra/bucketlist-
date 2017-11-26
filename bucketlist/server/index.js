@@ -76,15 +76,21 @@ app.get(
 
 app.get("/api/me", controller.getUsers);
 app.get("/api/countries", controller.getAllCountries);
-
 app.post("/api/bucketlist", controller.addToBucketlist);
 app.post("/api/bucketlist/remove", controller.deleteFromBucketlist);
 app.post("/api/visited", controller.addToVisited);
 app.post("/api/visited/remove", controller.deleteFromVisited);
-
+// app.post("/api/photo", controller.postPhoto);
 app.get("/api/countries/:id", controller.getCountriesByUserId);
-
+app.post("/api/uploads", controller.postPhoto);
+app.get("/api/bucketlist/:id", controller.getUserBucketList);
 // app.post("/api/countriesdata", controller.addCountries);
+app.get("/me", function(req, res) {
+  if (!req.user) {
+    return res.status(404);
+  }
+  res.status(200).json(req.user);
+});
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);

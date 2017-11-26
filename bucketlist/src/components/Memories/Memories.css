@@ -1,0 +1,48 @@
+.memories-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.name-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.name-input input {
+  height: 25px;
+  width: 480px;
+  margin-left: 10px;
+  border-style: solid;
+  border-color: #ff4081;
+  border-width: 1px;
+}
+
+.image-preview {
+  height: 300px;
+  width: 500px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ff4081;
+}
+
+.image-preview-card {
+  min-height: 500px;
+  min-width: 500px;
+  padding: 25px;
+}
+
+.desc-input textarea {
+  height: 100px;
+  width: 550px;
+  border-color: #ff4081;
+}
+
+.file-btn {
+  /*background: #ff4081;*/
+}

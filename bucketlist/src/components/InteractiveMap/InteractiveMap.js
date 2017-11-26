@@ -78,7 +78,6 @@ class IntMap extends Component {
     return (
       <div>
         <NavBar />
-        {this.state.hoverCountry}
         <svg
           viewBox="0 0 2000 1001"
           id="world"
@@ -92,6 +91,8 @@ class IntMap extends Component {
             closeModal={() => this.chooseCountry(null)}
           />
         )}
+        {this.state.hoverCountry}
+        <p>PIN IT PLAN IT POST IT</p>
       </div>
     );
   }

@@ -26,7 +26,8 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    this.props.getCountriesByUserId(1);
+    // this.props.getCountriesByUserId(1);
+    this.props.getCountries;
     // console.log("did mount: ", this.props.countryList);
   }
 
@@ -77,7 +78,7 @@ class Map extends Component {
     return (
       <div>
         <NavBar1 />
-        {this.state.hoverCountry}
+
         <svg
           viewBox="0 0 2000 1001"
           id="world"
@@ -85,7 +86,7 @@ class Map extends Component {
         >
           {countries}
         </svg>
-
+        {this.state.hoverCountry}
         <button onClick={this.handleLogin}>Create Your Own Map</button>
       </div>
     );

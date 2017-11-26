@@ -1,1 +1,1 @@
-select countryid from bucketlist where userid = $1;
+select country_name from bucketlist where userid = $1;

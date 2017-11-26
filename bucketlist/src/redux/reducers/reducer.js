@@ -11,6 +11,8 @@ const PENDING = "_PENDING";
 const FULFILLED = "_FULFILLED";
 
 const ADD_USER = "ADD_USER";
+const GET_USERS = "GET_USER";
+const REQ_USER = "REQ_USER";
 const GET_COUNTRIES = "GET_COUNTRIES";
 const ADD_TO_BUCKETLIST = "ADD_TO_BUCKETLIST";
 const REMOVE_FROM_BUCKETLIST = "REMOVE_FROM_BUCKETLIST";
@@ -20,10 +22,27 @@ const GET_COUNTRIESBYUSERID = "GET_COUNTRIESBYUSERID";
 
 //reducer
 function reducer(state = initialState, action) {
+  console.log("ACTION TYPE:", action.type);
   switch (action.type) {
     case ADD_USER + PENDING:
       return Object.assign({}, state, { isLoading: true });
     case ADD_USER + FULFILLED:
+      return Object.assign({}, state, {
+        isLoading: false,
+        user: action.payload
+      });
+
+    case GET_USERS + PENDING:
+      return Object.assign({}, state, { isLoading: true });
+    case GET_USERS + FULFILLED:
+      return Object.assign({}, state, {
+        isLoading: false,
+        user: action.payload
+      });
+
+    case REQ_USER + "_PENDING":
+      return Object.assign({}, state, { isLoading: true });
+    case REQ_USER + "_FULFILLED":
       return Object.assign({}, state, {
         isLoading: false,
         user: action.payload
@@ -75,10 +94,20 @@ function reducer(state = initialState, action) {
   }
 }
 //actions creaters
-export function getUser() {
+export function getUsers() {
   return {
-    type: ADD_USER,
-    payload: axios.get("/api/me").then(response => response.data)
+    type: GET_USERS,
+    payload: axios.get("/api/me").then(response => {
+      // console.log("getUser", response.data);
+      return response.data;
+    })
+  };
+}
+
+export function reqUser() {
+  return {
+    type: REQ_USER,
+    payload: axios.get("/me").then(response => response.data)
   };
 }
 
@@ -86,7 +115,7 @@ export function getCountries() {
   return {
     type: GET_COUNTRIES,
     payload: axios.get("/api/countries").then(response => {
-      console.log("reducer axios call", response.data);
+      // console.log("reducer axios call", response.data);
       return response.data;
     })
   };

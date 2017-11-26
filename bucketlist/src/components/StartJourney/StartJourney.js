@@ -11,17 +11,11 @@ class StartJourney extends Component {
     return (
       <div className="body">
         <div className="background">
-          <div className="welcome-box">
-            <h1> DREAM BIG, TRAVEL FAR </h1>
-            <div className="pin-it">
-              <hr />
-              <p>Pin it, plan it, do it</p>
-              <hr />
-            </div>
-            <Link to="/map">
-              <button className="transparent">START JOURNEY</button>
-            </Link>
-          </div>
+          <Link to="/map">
+            <button className="btn welcome-btn transparent">
+              <span>Start your journey here...</span>
+            </button>
+          </Link>
         </div>
       </div>
     );
