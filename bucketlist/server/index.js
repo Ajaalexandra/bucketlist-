@@ -84,6 +84,8 @@ app.post("/api/visited/remove", controller.deleteFromVisited);
 app.get("/api/countries/:id", controller.getCountriesByUserId);
 app.post("/api/uploads", controller.postPhoto);
 app.get("/api/bucketlist/:id", controller.getUserBucketList);
+app.get("/api/visited/:id", controller.getUserVisitedList);
+
 // app.post("/api/countriesdata", controller.addCountries);
 app.get("/me", function(req, res) {
   if (!req.user) {

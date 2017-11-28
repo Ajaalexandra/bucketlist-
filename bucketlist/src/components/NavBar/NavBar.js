@@ -21,18 +21,23 @@ class NavBar extends Component {
   render() {
     return (
       <div className="navBar-container">
-        <div className="nav-left">Logo</div>
+        <div className="nav-left">
+          <img className="nav-logo" src={require("../../images/plain.png")} />
+        </div>
         <div className="nav-mid">
+          <Link to="/int-map">
+            <h3>Pin It</h3>
+          </Link>
           <Link to="/bucketlist">
-            <h3>Bucketlist</h3>
+            <h3>Plan It</h3>
           </Link>
           <Link to="/memories">
-            <h3>Memories</h3>
+            <h3>Post It</h3>
           </Link>
         </div>
         <div className="nav-right" />
         <button className="login" onClick={this.handleLogin}>
-          Logout/login
+          Login/Logout
         </button>
       </div>
     );

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import Country from "../Country/Country";
 import { connect } from "react-redux";
-import mapBg from "./mapbg.jpg";
 import { getCountriesByUserId } from "../../redux/reducers/reducer.js";
 
 import "./Map.css";
 import Modal from "../Modal/Modal.js";
 import NavBar1 from "../NavBar1/NavBar1.js";
+import darkteal from "./darkteal.jpeg";
 
 //redux actions
 import { getCountries } from "../../redux/reducers/reducer.js";
@@ -60,14 +60,14 @@ class Map extends Component {
 
   render() {
     const countries = this.props.countryList.map((country, index) => {
-      // console.log("map render", this.props.countryList);
+      console.log("map render", country);
       return (
         <Country
           key={country.id}
           svg={country.svg}
           id={country.id}
           visited={country.visited}
-          bucketlist={country.bucketlist}
+          bucketList={country.bucketlist}
           name={country.name}
           toggleCountrySelect={() => this.chooseCountry(country)}
           hoverCountry={this.setHoverCountry}
@@ -83,7 +83,7 @@ class Map extends Component {
         <svg
           viewBox="0 0 2000 1001"
           id="world"
-          style={{ background: `url(${mapBg})` }}
+          style={{ background: `url(${darkteal})` }}
         >
           {countries}
         </svg>
@@ -95,7 +95,7 @@ class Map extends Component {
 }
 
 function mapStateToProps(state) {
-  const { countryList } = state;
+  const { countryList, bucketList, visitedList } = state;
   return {
     countryList
   };

@@ -31,8 +31,8 @@ class Country extends Component {
   }
 
   render() {
-    const visitedStyle = this.props.visited ? { fill: "turqoise" } : {};
-    const bucketlistStyle = this.props.bucketlist ? { fill: "green" } : {};
+    const visitedStyle = this.props.visited ? { fill: "aqua" } : {};
+    const bucketlistStyle = this.props.bucketlist ? { fill: "lime" } : {};
 
     const style = Object.assign(
       {},

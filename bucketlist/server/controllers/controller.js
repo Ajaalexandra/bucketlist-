@@ -12,7 +12,6 @@ module.exports = {
 
   getAllCountries: (req, res, next) => {
     const dbInstance = req.app.get("db");
-    console.log("does dbInstance exist?", dbInstance);
     dbInstance
       .getAllCountries()
       .then(countries => res.status(200).json(countries))
@@ -24,16 +23,16 @@ module.exports = {
     const { countryId, userId } = req.body;
     const dbInstance = req.app.get("db");
     dbInstance
-      .addToBucketlist([countryid, userId])
+      .addToBucketlist([countryId, userId])
       .then(updatedBucketlist => res.status(200).json(updatedBucketlist))
       .catch(() => res.status(500).json());
   },
 
   deleteFromBucketlist: (req, res, next) => {
-    const { countryid, userId } = req.body;
+    const { countryId, userId } = req.body;
     const dbInstance = req.app.get("db");
     dbInstance
-      .deleteFromBucketlist([country_name, userId])
+      .deleteFromBucketlist([countryId, userId])
       .then(updatedBucketlist => res.status(200).json(updatedBucketlist))
       .catch(() => res.status(500).json());
   },
@@ -53,7 +52,7 @@ module.exports = {
     dbInstance
       .deleteFromVisited([countryId, userId])
       .then(updatedVisited => {
-        console.log("deteled from visited in db", req.body);
+        // console.log("deteled from visited in db", req.body);
         res.status(200).json(updatedVisited);
       })
       .catch(() => res.status(500).json());
@@ -72,6 +71,15 @@ module.exports = {
     const dbInstance = req.app.get("db");
     dbInstance
       .getBucketlistByUserId([req.params.id])
+      .then(response => res.status(200).json(response))
+      .catch(() => res.status(500).json());
+  },
+
+  getUserVisitedList: (req, res, next) => {
+    const dbInstance = req.app.get("db");
+    // console.log(dbInstance);
+    dbInstance
+      .getVisitedListByUserId([req.params.id])
       .then(response => res.status(200).json(response))
       .catch(() => res.status(500).json());
   },
@@ -95,9 +103,9 @@ module.exports = {
         });
 
         dbInstance.getBucketlistByUserId(userId).then(bucketlistCountries => {
-          console.log(bucketlistCountries);
+          // console.log(bucketlistCountries);
           bucketlistCountries = bucketlistCountries.map(val => val.countryid);
-          console.log(bucketlistCountries);
+          // console.log(bucketlistCountries);
 
           countriesByUserId = countriesByUserId.map((val, i) => {
             if (bucketlistCountries.includes(val.id)) {

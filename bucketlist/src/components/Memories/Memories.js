@@ -7,6 +7,7 @@ import Card from "material-ui/Card";
 import axios from "axios";
 import "./Memories.css";
 import NavBar from "../NavBar/NavBar.js";
+import countries_json from "../../data/countries_json.js";
 import { reqUser } from "../../redux/reducers/reducer.js";
 
 const style = {
@@ -21,12 +22,21 @@ class Memories extends Component {
       imagePreviewUrl: "",
       downloadURL: "",
       name: "",
-      description: ""
+      description: "",
+      visited: [],
+      id: 1
     };
     this.uploadImage = this.uploadImage.bind(this);
     this.processImageUpload = this.processImageUpload.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
+  }
+
+  componentWillMount() {
+    axios.get(`/api/visited/${this.state.id}`).then(response => {
+      console.log("response", response.data);
+      return this.setState({ visited: response.data });
+    });
   }
 
   componentDidMount() {
@@ -91,10 +101,29 @@ class Memories extends Component {
         <img src={this.state.imagePreviewUrl} className="image-preview" />
       );
     }
+
+    const countriesData = countries_json;
+    const visited = this.state.visited.map(function(country, index) {
+      for (let i = 0; i < countriesData.length; i++) {
+        if (countriesData[i].id === country.countryid) {
+          return (
+            <Card className="bucket-item">
+              <p key={index}>{countriesData[i].name}</p>
+              <p>Trip Notes</p>
+              <textarea />
+              <button>Save</button>
+            </Card>
+          );
+        }
+      }
+    });
+
     return (
       <div className="memories-container">
         <NavBar />
-        <h1>Memories</h1>
+        <h1>Memories Journal</h1>
+        {visited}
+
         <form
           onSubmit={event => {
             this.uploadImage(event);

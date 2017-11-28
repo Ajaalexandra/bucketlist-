@@ -5,8 +5,9 @@ import { connect } from "react-redux";
 import {
   addToBucketlist,
   removeFromBucketList,
-  addToVistedList,
-  removeFromVistedList
+  addToVisitedList,
+  removeFromVisitedList,
+  getCountriesByUserId
 } from "../../redux/reducers/reducer.js";
 
 class Modal extends Component {
@@ -22,25 +23,27 @@ class Modal extends Component {
     this.saveChanges = this.saveChanges.bind(this);
   }
 
+  componentDidMount() {
+    console.log(this.state);
+  }
+
   saveChanges() {
     const { visited, bucketlist } = this.state;
     let { country, user } = this.props;
     user = { id: 1 };
     if (!country.visited && visited) {
-      this.props.addToVistedList(country.id, user.id);
+      this.props.addToVisitedList(country.id, user.id);
     }
     if (!country.bucketlist && bucketlist) {
       this.props.addToBucketlist(country.id, user.id);
     }
     if (country.visited && !visited) {
-      console.log("removing visited", country.id, user.id);
-      this.props.removeFromVistedList(country.id, user.id);
+      this.props.removeFromVisitedList(country.id, user.id);
     }
     if (country.bucketlist && !bucketlist) {
-      console.log("removing bucketlist", country.id, user.id);
-
       this.props.removeFromBucketList(country.id, user.id);
     }
+    this.props.getCountriesByUserId(user.id);
   }
 
   render() {
@@ -48,7 +51,7 @@ class Modal extends Component {
     return (
       <div className="Modal">
         <p> {this.props.country.name} </p>
-        <span>visted</span>
+        <span>visited</span>
         <input
           type="checkbox"
           checked={this.state.visited}
@@ -84,6 +87,7 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   addToBucketlist,
   removeFromBucketList,
-  addToVistedList,
-  removeFromVistedList
+  addToVisitedList,
+  removeFromVisitedList,
+  getCountriesByUserId
 })(Modal);

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./NavBar1.css";
 
-class NavBar extends Component {
+class NavBar1 extends Component {
   constructor(props) {
     super(props);
 
@@ -21,7 +21,10 @@ class NavBar extends Component {
   render() {
     return (
       <div className="navBar-container">
-        <div className="nav-left">Logo</div>
+        <div className="nav-left">
+          <img className="nav-logo" src={require("../../images/plain.png")} />
+        </div>
+
         <div className="nav-right" />
         <button className="login" onClick={this.handleLogin}>
           Logout/login
@@ -31,4 +34,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+export default NavBar1;

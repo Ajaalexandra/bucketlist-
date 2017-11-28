@@ -1,8 +1,17 @@
-.country-svg {
+/*.country-svg {
   transform-origin: center;
   fill: rgb(200, 200, 200);
   stroke: rgb(100, 100, 100);
   opacity: 0.55;
+  transition: 0.33s;
+  cursor: pointer;
+}*/
+
+.country-svg {
+  transform-origin: center;
+  fill: #ffffff;
+  stroke: rgb(100, 100, 100);
+  opacity: 0.8;
   transition: 0.33s;
   cursor: pointer;
 }

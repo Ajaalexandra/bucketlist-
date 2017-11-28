@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 // import { getCountriesByUserId } from "../../redux/reducers/reducer.js";
+import Card from "material-ui/Card";
 import axios from "axios";
 import "./MyBucketList.css";
 import NavBar from "../NavBar/NavBar.js";
@@ -14,7 +15,8 @@ class MyBucketList extends Component {
     this.state = {
       user: {},
       id: 1,
-      bucketlist: []
+      bucketlist: [],
+      notes: []
     };
   }
 
@@ -27,6 +29,12 @@ class MyBucketList extends Component {
       return this.setState({ bucketlist: response.data });
     });
   }
+
+  //handleChangeForComment
+  //submit change
+  //onChange for text area handleChangeForComment()
+  handleChangeForComment() {}
+
   //country names
   //countriesData is an array of objects imported from a local file.
   //country is each piece of data that is being returned from our getBucketlistByUserId SQL query.
@@ -35,14 +43,21 @@ class MyBucketList extends Component {
     const bucket = this.state.bucketlist.map(function(country, index) {
       for (let i = 0; i < countriesData.length; i++) {
         if (countriesData[i].id === country.countryid) {
-          return <p key={index}>{countriesData[i].name}</p>;
+          return (
+            <Card className="bucket-item">
+              <p key={index}>{countriesData[i].name}</p>
+              <p>My Trip Ideas</p>
+              <textarea />
+              <button>Save</button>
+            </Card>
+          );
         }
       }
     });
     return (
       <div className="bucketlist-container">
         <NavBar />
-        <h1> Bucketlist View </h1>
+        <h1> Welcome to Your Bucketlist </h1>
         {bucket}
         <Link to="/bucketlist" />
       </div>

@@ -3,7 +3,7 @@ import axios from "axios";
 const initialState = {
   user: {},
   countryList: [],
-  bucketlist: [],
+  bucketList: [],
   visitedList: []
 };
 
@@ -134,12 +134,12 @@ export function removeFromBucketList(countryId, userId) {
   return {
     type: REMOVE_FROM_BUCKETLIST,
     payload: axios
-      .post("/api/bucketList/remove", { countryId, userId })
+      .post("/api/bucketlist/remove", { countryId, userId })
       .then(response => response.data)
   };
 }
 
-export function addToVistedList(countryId, userId) {
+export function addToVisitedList(countryId, userId) {
   return {
     type: ADD_TO_VISITEDLIST,
     payload: axios
@@ -148,7 +148,7 @@ export function addToVistedList(countryId, userId) {
   };
 }
 
-export function removeFromVistedList(countryId, userId) {
+export function removeFromVisitedList(countryId, userId) {
   console.log("remove fired");
   return {
     type: REMOVE_FROM_VISITEDLIST,

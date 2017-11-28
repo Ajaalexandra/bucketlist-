@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Country from "../Country/Country";
 // import axios from "axios";
 import { connect } from "react-redux";
-import mapBg from "./mapbg.jpg";
 import "./InteractiveMap.css";
 import Modal from "../Modal/Modal.js";
 import NavBar from "../NavBar/NavBar.js";
@@ -13,8 +12,8 @@ import {
   getCountries,
   addToBucketlist,
   removeFromBucketList,
-  addToVistedList,
-  removeFromVistedList
+  addToVisitedList,
+  removeFromVisitedList
 } from "../../redux/reducers/reducer.js";
 
 class IntMap extends Component {
@@ -81,7 +80,7 @@ class IntMap extends Component {
         <svg
           viewBox="0 0 2000 1001"
           id="world"
-          style={{ background: `url(${mapBg})` }}
+          // style={{ background: `url(${})` }}
         >
           {countries}
         </svg>
@@ -99,9 +98,11 @@ class IntMap extends Component {
 }
 
 function mapStateToProps(state) {
-  const { countryList } = state;
+  const { countryList, bucketList, visitedList } = state;
   return {
-    countryList
+    countryList,
+    bucketList,
+    visitedList
   };
 }
 
@@ -110,6 +111,6 @@ export default connect(mapStateToProps, {
   getCountries,
   addToBucketlist,
   removeFromBucketList,
-  addToVistedList,
-  removeFromVistedList
+  addToVisitedList,
+  removeFromVisitedList
 })(IntMap);
