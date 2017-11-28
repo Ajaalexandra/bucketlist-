@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import "./InteractiveMap.css";
 import Modal from "../Modal/Modal.js";
 import NavBar from "../NavBar/NavBar.js";
+import teal1 from "./teal1.jpg";
 
 //redux actions
 import {
@@ -15,6 +16,13 @@ import {
   addToVisitedList,
   removeFromVisitedList
 } from "../../redux/reducers/reducer.js";
+
+//styles
+const mapStyle = {
+  background: `url(${teal1})`,
+  "background-repeat": "no-repeat",
+  "background-size": "cover"
+};
 
 class IntMap extends Component {
   constructor(props) {
@@ -77,11 +85,7 @@ class IntMap extends Component {
     return (
       <div>
         <NavBar />
-        <svg
-          viewBox="0 0 2000 1001"
-          id="world"
-          // style={{ background: `url(${})` }}
-        >
+        <svg viewBox="0 0 2000 1001" id="world" style={mapStyle}>
           {countries}
         </svg>
         {this.state.selectedCountry && (

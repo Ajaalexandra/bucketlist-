@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-// import { getCountriesByUserId } from "../../redux/reducers/reducer.js";
+// import { reqUser } from "../../redux/reducers/reducer.js";
 import Card from "material-ui/Card";
 import axios from "axios";
 import "./MyBucketList.css";
@@ -16,16 +16,16 @@ class MyBucketList extends Component {
       user: {},
       id: 1,
       bucketlist: [],
-      notes: []
+      notes: [],
+      comment: ""
     };
+    this.handleChangeForComment = this.handleChangeForComment.bind(this);
+    this.submitComment = this.submitComment.bind(this);
   }
 
   componentWillMount() {
-    // axios
-    //   .get("/api/bucketlist/:id")
-    //   .then(response => this.setState({ bucketlist: response.data }));
     axios.get(`/api/bucketlist/${this.state.id}`).then(response => {
-      console.log("response", response.data);
+      // console.log("response", response.data);
       return this.setState({ bucketlist: response.data });
     });
   }
@@ -33,7 +33,16 @@ class MyBucketList extends Component {
   //handleChangeForComment
   //submit change
   //onChange for text area handleChangeForComment()
-  handleChangeForComment() {}
+  handleChangeForComment(userInput) {
+    this.setState({ comment: userInput });
+  }
+
+  submitComment() {
+    axios.post(`/api/comments/${this.state.id}`, {
+      userid: this.state.id,
+      comment: this.state.comment
+    });
+  }
 
   //country names
   //countriesData is an array of objects imported from a local file.
@@ -47,13 +56,15 @@ class MyBucketList extends Component {
             <Card className="bucket-item">
               <p key={index}>{countriesData[i].name}</p>
               <p>My Trip Ideas</p>
-              <textarea />
-              <button>Save</button>
+              <textarea
+                onChange={e => this.handleChangeForComment(e.target.value)}
+              />
+              <button onClick={() => this.submitComment()}>Save</button>
             </Card>
           );
         }
       }
-    });
+    }, this);
     return (
       <div className="bucketlist-container">
         <NavBar />

@@ -22,7 +22,7 @@ class NavBar extends Component {
     return (
       <div className="navBar-container">
         <div className="nav-left">
-          <img className="nav-logo" src={require("../../images/plain.png")} />
+          <img className="nav-logo" src={require("../../images/B&W.png")} />
         </div>
         <div className="nav-mid">
           <Link to="/int-map">

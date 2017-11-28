@@ -6,10 +6,17 @@ import { getCountriesByUserId } from "../../redux/reducers/reducer.js";
 import "./Map.css";
 import Modal from "../Modal/Modal.js";
 import NavBar1 from "../NavBar1/NavBar1.js";
-import darkteal from "./darkteal.jpeg";
+import teal1 from "./teal1.jpg";
 
 //redux actions
 import { getCountries } from "../../redux/reducers/reducer.js";
+
+//styles
+const mapStyle = {
+  background: `url(${teal1})`,
+  "background-repeat": "no-repeat",
+  "background-size": "cover"
+};
 
 class Map extends Component {
   constructor(props) {
@@ -80,11 +87,7 @@ class Map extends Component {
       <div>
         <NavBar1 />
 
-        <svg
-          viewBox="0 0 2000 1001"
-          id="world"
-          style={{ background: `url(${darkteal})` }}
-        >
+        <svg viewBox="0 0 2000 1001" id="world" style={mapStyle}>
           {countries}
         </svg>
         {this.state.hoverCountry}

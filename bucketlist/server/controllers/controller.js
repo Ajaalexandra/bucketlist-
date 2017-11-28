@@ -84,6 +84,18 @@ module.exports = {
       .catch(() => res.status(500).json());
   },
 
+  postComment: (req, res, next) => {
+    const dbInstance = req.app.get("db");
+    console.log(req.body);
+    dbInstance
+      .postComment([req.body.userid, req.body.comment])
+      .then(response => {
+        console.log(reponse);
+        res.status(200).json(response);
+      })
+      .catch(() => res.status(500).json());
+  },
+
   getCountriesByUserId: (req, res, next) => {
     const userId = req.params.id;
     let countriesByUserId = [];
