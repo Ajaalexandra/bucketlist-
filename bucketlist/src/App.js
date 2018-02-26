@@ -13,3 +13,10 @@ class App extends Component {
 }
 
 export default App;
+
+
+  // componentDidMount() {
+  //   axios.get("/api/test").then(response => {
+  //     console.log(response.data);
+  //   });
+  // }

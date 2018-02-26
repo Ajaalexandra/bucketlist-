@@ -23,16 +23,13 @@ class MyBucketList extends Component {
     this.submitComment = this.submitComment.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     axios.get(`/api/bucketlist/${this.state.id}`).then(response => {
       // console.log("response", response.data);
       return this.setState({ bucketlist: response.data });
     });
   }
 
-  //handleChangeForComment
-  //submit change
-  //onChange for text area handleChangeForComment()
   handleChangeForComment(userInput) {
     this.setState({ comment: userInput });
   }

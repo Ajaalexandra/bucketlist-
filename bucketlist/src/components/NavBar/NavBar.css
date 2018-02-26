@@ -19,8 +19,9 @@
 }
 
 .nav-logo {
-  height: 450px;
-  width: 450px;
+  height: 350px;
+  width: 350px;
+  padding-top: 75px;
 }
 .nav-mid {
   display: flex;
@@ -30,7 +31,7 @@
 }
 
 .nav-mid h3 {
-  color: blue;
+  color: black;
 }
 
 .login {
